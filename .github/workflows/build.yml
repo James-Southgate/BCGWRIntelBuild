@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build:
-    runs-on: macos-13   # Intel runner (macos-13 is Intel, macos-14 is Apple Silicon)
+    runs-on: macos-13   # Intel runner
     steps:
       - uses: actions/checkout@v3
 
@@ -19,7 +19,7 @@ jobs:
 
       - name: Build with PyInstaller
         run: |
-          pyinstaller main.spec
+          pyinstaller --windowed --name main main.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
