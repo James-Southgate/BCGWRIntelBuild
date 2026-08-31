@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 1   # Speeds up checkout and avoids history-related hangs
+          fetch-depth: 1   # Speeds up checkout
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -22,7 +22,12 @@ jobs:
 
       - name: Build with PyInstaller
         run: |
-          arch -x86_64 pyinstaller main.spec
+          arch -x86_64 pyinstaller \
+            --windowed \
+            --onedir \
+            --name main \
+            --add-data "config.json:." \
+            main.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
