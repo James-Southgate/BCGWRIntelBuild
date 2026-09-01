@@ -27,6 +27,7 @@ jobs:
             --onedir \
             --name main \
             --add-data "config.json:." \
+            --hidden-import xlsxwriter \
             main.py
 
       - name: Upload artifact
